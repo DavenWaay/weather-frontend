@@ -1,88 +1,85 @@
-Activity 4: Weather Proxy API
+# Activity 4: Weather Proxy API
 
-This application allows users to view the current temperature and weather condition of any city they enter.
+This application allows users to view the **current temperature** and **weather condition** of any city they enter.
 
-It uses the OpenWeatherMap API to retrieve real-time weather data, which the backend filters and returns in a simplified format.
+It uses the **OpenWeatherMap API** to retrieve real-time weather data, which the backend filters and returns in a simplified format.
 
-The system consists of a NestJS backend that serves as a proxy to fetch and process weather information, and a React frontend that provides an easy-to-use interface for users to search and view the results.
+The system consists of:
+- A **NestJS backend** (acts as proxy + Swagger docs)
+- A **React (Vite) frontend** (UI for user to search/view results)
 
-🧩 System Overview
-Component	Technology	Description
-Backend	NestJS	Acts as a proxy to OpenWeatherMap and exposes Swagger API documentation
-Frontend	React (Vite)	Displays weather information based on backend responses
-📂 Repositories
+---
 
-Backend (weather-proxy): https://github.com/DavenWaay/weather-proxy
+## Repositories
 
-Frontend (weather-frontend): https://github.com/DavenWaay/weather-frontend.git
+- Backend (weather-proxy): https://github.com/DavenWaay/weather-proxy
+- Frontend (weather-frontend): https://github.com/DavenWaay/weather-frontend.git
 
-⚙️ Prerequisites
+---
 
-Before running the project, make sure you have:
+## Prerequisites
 
-Node.js
+- Node.js
+- npm or yarn
+- Code editor
+- OpenWeatherMap API key (environment variable: `OWM_KEY`)
 
-npm (comes with Node.js) or yarn
+---
 
-A code editor (e.g., VS Code)
+## How to Run Locally
 
-An OpenWeatherMap API key (set as environment variable OWM_KEY)
+1. Clone both repositories
 
-🚀 How to Run the Project
-
-Clone both repositories
-
+```
 git clone https://github.com/DavenWaay/weather-proxy
 git clone https://github.com/DavenWaay/weather-frontend.git
+```
 
+2. Install dependencies for both repos
 
-Install dependencies in both folders:
-
+```
 npm install
 # or
 yarn install
+```
 
+3. In the backend repo, create `.env` file and add:
 
-Set up environment variable in the backend (.env file):
-
+```
 OWM_KEY=your_api_key_here
+```
 
+4. Run backend
 
-Run the backend:
-
+```
 npm run start:dev
+```
 
+Swagger Docs → http://localhost:3000/api
 
-Access API Docs: http://localhost:3000/api
+5. Run frontend
 
-Run the frontend:
-
+```
 npm run dev
+```
 
+Frontend → http://localhost:5173
 
-Open the app at http://localhost:5173
+---
 
-📦 Dependencies Used
-Backend (weather-proxy)
+## Dependencies
 
-@nestjs/common, @nestjs/core, @nestjs/platform-express, @nestjs/config – NestJS framework
+### Backend (weather-proxy)
+- NestJS core libs (`@nestjs/common`, `@nestjs/core`, `@nestjs/config`, etc.)
+- `axios` (API calls)
+- `@nestjs/swagger`, `swagger-ui-express`
+- `reflect-metadata`, `rxjs`
 
-axios – HTTP client for external API calls
+**Dev deps:** `ts-node`, `typescript`, `jest`, `eslint`, etc.
 
-@nestjs/swagger, swagger-ui-express – OpenAPI/Swagger integration and UI
+### Frontend (weather-frontend)
+- `react`, `react-dom`
+- `vite`, `@vitejs/plugin-react`
+- `typescript`, `eslint`, etc.
 
-reflect-metadata, rxjs
-
-Dev Dependencies:
-
-ts-node, typescript, tsconfig-paths, @types/*, jest, eslint, etc.
-
-Frontend (weather-frontend)
-
-react, react-dom
-
-vite, @vitejs/plugin-react
-
-typescript, eslint, and other type/dev dependencies
-
-Exact versions are listed in each project's package.json.
+> Exact versions are in each repository's `package.json`
