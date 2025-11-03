@@ -71,6 +71,16 @@ export default function App() {
     try {
       const res = await fetch(`http://localhost:3000/weather?city=${encodeURIComponent(city)}`);
       const data = await res.json();
+
+      // If the proxy returned a non-OK status (e.g. 404 for unknown/corrupt city)
+      // show a clear user-facing message. The user requested a specific message
+      // for gibberish/non-existing cities.
+      if (!res.ok) {
+        const msg = res.status === 404 ? "You need to enter a valid City." : (data?.message || "Failed to fetch weather.");
+        setWeather({ error: msg, city });
+        return;
+      }
+
       // store the requested/returned city on the weather object so it persists
       const cityName = data?.city ?? city;
       setWeather({ ...data, city: cityName });
